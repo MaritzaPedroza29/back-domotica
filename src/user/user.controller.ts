@@ -8,13 +8,15 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+   async create(@Body() createUserDto: CreateUserDto) {
+    const newUser = await this.userService.create(createUserDto);
+    return newUser; // Puedes devolver el usuario recién creado como parte de la respuesta si lo deseas
   }
 
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  async findAll() {
+    const users = await this.userService.findAll();
+    return users;
   }
 
   @Get(':id')
@@ -28,7 +30,7 @@ export class UserController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.userService.remove(+id);
   }
 }
