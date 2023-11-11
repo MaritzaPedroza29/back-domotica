@@ -15,11 +15,13 @@ model Usuarios {
   nombre    String
   correo    String
   clave     String
+  imagen    String @default("valor_predeterminado.jpg")
 }
 
 model salones {
   idsalon               Int                     @id @unique @default(autoincrement())
   nombre_salon          String
+  dispositivosdomoticos dispositivosdomoticos[]
 }
 
 model dispositivosdomoticos {

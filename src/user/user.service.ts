@@ -24,8 +24,20 @@ export class UserService {
     return `This action returns a #${id} user`;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const { nombre, correo } = updateUserDto;
+  
+    const updateUser = await prisma.usuarios.update({
+      where: {
+        idusuario: id,
+      },
+      data: {
+        nombre: nombre || undefined, // Actualiza el nombre si se proporciona, de lo contrario, no cambia el nombre
+        correo: correo || undefined, // Actualiza el correo si se proporciona, de lo contrario, no cambia el correo
+      },
+    });
+  
+    return updateUser;
   }
 
   async remove(id: number) {

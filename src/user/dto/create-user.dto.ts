@@ -13,4 +13,8 @@ export class CreateUserDto {
   @IsNotEmpty()
   @MinLength(8)
   clave: string;
+
+  @IsString()
+  @IsNotEmpty()
+  imagen: string;
 }

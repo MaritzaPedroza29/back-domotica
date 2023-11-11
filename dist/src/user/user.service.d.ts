@@ -6,14 +6,22 @@ export declare class UserService {
         nombre: string;
         correo: string;
         clave: string;
+        imagen: string;
     }>;
     findAll(): Promise<any[]>;
     findOne(id: number): string;
-    update(id: number, updateUserDto: UpdateUserDto): string;
+    update(id: number, updateUserDto: UpdateUserDto): Promise<{
+        idusuario: number;
+        nombre: string;
+        correo: string;
+        clave: string;
+        imagen: string;
+    }>;
     remove(id: number): Promise<{
         idusuario: number;
         nombre: string;
         correo: string;
         clave: string;
+        imagen: string;
     }>;
 }

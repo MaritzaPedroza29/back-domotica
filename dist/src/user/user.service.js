@@ -24,8 +24,18 @@ let UserService = class UserService {
     findOne(id) {
         return `This action returns a #${id} user`;
     }
-    update(id, updateUserDto) {
-        return `This action updates a #${id} user`;
+    async update(id, updateUserDto) {
+        const { nombre, correo } = updateUserDto;
+        const updateUser = await prisma.usuarios.update({
+            where: {
+                idusuario: id,
+            },
+            data: {
+                nombre: nombre || undefined,
+                correo: correo || undefined,
+            },
+        });
+        return updateUser;
     }
     async remove(id) {
         const user = await prisma.usuarios.delete({
