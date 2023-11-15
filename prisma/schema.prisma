@@ -19,7 +19,7 @@ model usuarios {
 }
 
 model salones {
-  idsalon      Int            @id @default(autoincrement())
+  idsalon      Int            @id
   nombre_salon String
   dispositivos dispositivos[]
 }

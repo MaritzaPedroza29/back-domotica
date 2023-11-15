@@ -7,10 +7,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_FILTER } from '@nestjs/core';
 import { HttpExceptionFilter } from './shared/http-exception.filter';
 import { DispositivosModule } from './dispositivos/dispositivos.module';
+import { SwitchbotModule } from './switchbot/switchbot.module';
+import { HttpModule } from '@nestjs/axios';
+
 
 
 @Module({
-  imports: [UserModule, DispositivosModule],
+  imports: [UserModule, DispositivosModule, SwitchbotModule, HttpModule],
   controllers: [AppController],
   providers: [AppService],
 })
