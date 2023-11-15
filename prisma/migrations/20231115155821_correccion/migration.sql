@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `salones` MODIFY `idsalon` INTEGER NOT NULL AUTO_INCREMENT;

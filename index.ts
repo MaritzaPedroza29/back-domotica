@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+/*import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 async function main() {
@@ -6,7 +6,8 @@ async function main() {
     data: {
       nombre: 'rodolfo ortega',
       correo: 'rodolfoortega@gmail.com',
-      clave: '5678'
+      clave: '5678',
+      imagen: 'profesor4.png'
     }
   })
 
@@ -21,4 +22,4 @@ main()
     console.error(e)
     await prisma.$disconnect()
     process.exit(1)
-  })
+  })*/
