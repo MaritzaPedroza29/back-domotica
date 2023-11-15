@@ -14,5 +14,5 @@ export declare class SwitchbotService {
     sendSwitchbotCommand(deviceId: string, command: string, parameter?: string): Observable<AxiosResponse<any>>;
     getSwitchbotState(deviceId: string): Observable<AxiosResponse<any>>;
     private generateHeaders;
-    guidv4(data?: any): string;
+    private guidv4;
 }

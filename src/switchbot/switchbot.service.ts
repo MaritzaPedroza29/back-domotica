@@ -47,37 +47,33 @@ export class SwitchbotService {
     const url = `https://api.switch-bot.com/v1.1/devices/${deviceId}/status`;
 
     const headers = this.generateHeaders();
+    console.log(headers);
 
     return this.httpService.get(url, { headers });
   }
   
-  
   private generateHeaders(): { [key: string]: string } {
     const t = Date.now();
-    const nonce = this.guidv4;
+    const nonce = this.guidv4();
     const data = process.env.SWITCHBOT_API_TOKEN + t + nonce;
     console.log(data);
     const signTerm = crypto.createHmac('sha256', process.env.SWITCHBOT_SECRET)
-        .update(Buffer.from(data, 'utf-8'))
-        .digest();
+      .update(Buffer.from(data, 'utf-8'))
+      .digest();
     const sign = signTerm.toString("base64");
+
     return {
-      "Authorization": process.env.SWITCHBOT_API_TOKEN,
-      "sign": sign, // Debes calcular el sign correctamente
-      "nonce": nonce, // Debes generar un nonce único
-      "t": Date.now().toString(),
+      Authorization: process.env.SWITCHBOT_API_TOKEN,
+      sign: sign,
+      nonce: nonce,
+      t: Date.now().toString(),
     };
   }
-  guidv4(data = null) {
-    // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
-    data = data || crypto.randomBytes(16);
-  
-    // Set the version bits (4th character) and variant bits (7th character).
+
+  private guidv4(): string {
+    const data = crypto.randomBytes(16);
     data[6] = (data[6] & 0x0f) | 0x40;
     data[8] = (data[8] & 0x3f) | 0x80;
-  
-    // Output the 36 character UUID.
-    const hexString = Buffer.from(data).toString('hex');
-    return `${hexString.substr(0, 8)}-${hexString.substr(8, 4)}-${hexString.substr(12, 4)}-${hexString.substr(16, 4)}-${hexString.substr(20)}`;
+    return data.toString('hex', 0, 16);
   }
 }
