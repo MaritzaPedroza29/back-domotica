@@ -12,7 +12,7 @@ export declare class SwitchbotService {
     update(id: number, updateSwitchbotDto: UpdateSwitchbotDto): string;
     remove(id: number): string;
     sendSwitchbotCommand(deviceId: string, command: string, parameter?: string): Observable<AxiosResponse<any>>;
-    getSwitchbotState(deviceId: string): Observable<AxiosResponse<any>>;
+    getSwitchbotState(deviceId: string): void;
     private generateHeaders;
     private guidv4;
 }

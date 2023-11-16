@@ -4,6 +4,7 @@ import { CreateSwitchbotDto } from './dto/create-switchbot.dto';
 import { UpdateSwitchbotDto } from './dto/update-switchbot.dto';
 import { Observable } from 'rxjs';
 import { AxiosResponse } from 'axios';
+import axios from 'axios';
 const crypto = require('crypto');
 const https = require('https');
 
@@ -43,13 +44,9 @@ export class SwitchbotService {
     return this.httpService.post(url, data, { headers });
   }
 
-  getSwitchbotState(deviceId: string): Observable<AxiosResponse<any>> {
-    const url = `https://api.switch-bot.com/v1.1/devices/${deviceId}/status`;
-
-    const headers = this.generateHeaders();
-    console.log(headers);
-
-    return this.httpService.get(url, { headers });
+  getSwitchbotState(deviceId: string){
+   
+    
   }
   
   private generateHeaders(): { [key: string]: string } {

@@ -44,10 +44,6 @@ let SwitchbotService = class SwitchbotService {
         return this.httpService.post(url, data, { headers });
     }
     getSwitchbotState(deviceId) {
-        const url = `https://api.switch-bot.com/v1.1/devices/${deviceId}/status`;
-        const headers = this.generateHeaders();
-        console.log(headers);
-        return this.httpService.get(url, { headers });
     }
     generateHeaders() {
         const t = Date.now();

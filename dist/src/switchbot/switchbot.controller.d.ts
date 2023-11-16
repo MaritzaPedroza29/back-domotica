@@ -13,5 +13,5 @@ export declare class SwitchbotController {
         command: string;
         parameter?: string;
     }): import("rxjs").Observable<import("axios").AxiosResponse<any, any>>;
-    getState(deviceId: string): import("rxjs").Observable<import("axios").AxiosResponse<any, any>>;
+    getState(deviceId: string): void;
 }

@@ -1,9 +1,26 @@
 import { CreateDispositivoDto } from './dto/create-dispositivo.dto';
 import { UpdateDispositivoDto } from './dto/update-dispositivo.dto';
 export declare class DispositivosService {
-    create(createDispositivoDto: CreateDispositivoDto): string;
+    create(createDispositivoDto: CreateDispositivoDto): Promise<{
+        iddispositivo: string;
+        nombre_dispositivo: string;
+        salonesIdsalon: number;
+    }>;
     findAll(): Promise<any[]>;
     findOne(id: number): string;
-    update(id: number, updateDispositivoDto: UpdateDispositivoDto): string;
-    remove(id: number): string;
+    update(id: string, updateDispositivoDto: UpdateDispositivoDto): Promise<{
+        iddispositivo: string;
+        nombre_dispositivo: string;
+        salonesIdsalon: number;
+    }>;
+    remove(id: string): Promise<{
+        iddispositivo: string;
+        nombre_dispositivo: string;
+        salonesIdsalon: number;
+    }>;
+    getdeviceid(deviceIds: string[]): void;
+    getenchufle(idenchfle: string): Promise<void>;
+    getmedidor(idmedidor: string): Promise<void>;
+    commandenchufle(idmedidor: string, comando: string): Promise<any>;
+    getdatadevice(): Promise<any[]>;
 }

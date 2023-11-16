@@ -24,17 +24,30 @@ let DispositivosController = class DispositivosController {
     create(createDispositivoDto) {
         return this.dispositivosService.create(createDispositivoDto);
     }
-    findAll() {
-        return this.dispositivosService.findAll();
+    async getdatadevice() {
+        await this.dispositivosService.getdatadevice();
+        return this.dispositivosService.getdatadevice();
+    }
+    comando(id, comando) {
+        return this.dispositivosService.commandenchufle(id, comando);
+    }
+    async findAll() {
+        const dispositivos = await this.dispositivosService.findAll();
+        const iddispositivo = dispositivos.map(dispositivo => dispositivo.iddispositivo);
+        this.getState(iddispositivo);
+        return dispositivos;
     }
     findOne(id) {
         return this.dispositivosService.findOne(+id);
     }
     update(id, updateDispositivoDto) {
-        return this.dispositivosService.update(+id, updateDispositivoDto);
+        return this.dispositivosService.update(id, updateDispositivoDto);
     }
     remove(id) {
-        return this.dispositivosService.remove(+id);
+        return this.dispositivosService.remove(id);
+    }
+    getState(deviceId) {
+        return this.dispositivosService.getdeviceid(deviceId);
     }
 };
 exports.DispositivosController = DispositivosController;
@@ -46,10 +59,24 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], DispositivosController.prototype, "create", null);
 __decorate([
+    (0, common_1.Get)("/datadevice"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], DispositivosController.prototype, "getdatadevice", null);
+__decorate([
+    (0, common_1.Post)("/comando/:id/:comando"),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('comando')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], DispositivosController.prototype, "comando", null);
+__decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], DispositivosController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
@@ -73,6 +100,12 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], DispositivosController.prototype, "remove", null);
+__decorate([
+    __param(0, (0, common_1.Param)('deviceId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Array]),
+    __metadata("design:returntype", void 0)
+], DispositivosController.prototype, "getState", null);
 exports.DispositivosController = DispositivosController = __decorate([
     (0, common_1.Controller)('dispositivos'),
     __metadata("design:paramtypes", [dispositivos_service_1.DispositivosService])
