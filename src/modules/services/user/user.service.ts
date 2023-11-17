@@ -2,16 +2,25 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from '../../dto/dtouser/create-user.dto';
 import { UpdateUserDto } from '../../dto/dtouser/update-user.dto';
 import { PrismaClient } from '@prisma/client';
-import { Request, Response } from 'express';
+import * as crypto from 'crypto';
 
 const prisma = new PrismaClient();
 
 @Injectable()
 export class UserService {
   async create(createUserDto: CreateUserDto) {
+    const { nombre, correo, clave, imagen } = createUserDto;
+    const hashedPassword = this.hashPassword(clave);
+
     const newUser = await prisma.usuarios.create({
-      data: createUserDto,
+      data: {
+        nombre,
+        correo,
+        clave: hashedPassword,
+        imagen,
+      },
     });
+
     return newUser;
   }
 
@@ -45,6 +54,12 @@ export class UserService {
       where: { idusuario: id },
     })
     return user;
+  }
+
+  hashPassword(password: string): string {
+    const md5sum = crypto.createHash('md5');
+    md5sum.update(password);
+    return md5sum.digest('hex');
   }
 }
 

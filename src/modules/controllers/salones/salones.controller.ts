@@ -23,12 +23,12 @@ export class SalonesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateSaloneDto: UpdateSaloneDto) {
-    return this.salonesService.update(id, updateSaloneDto);
+  update(@Param('id') id: string, @Body() updateSaloneDto: UpdateSaloneDto) {
+    return this.salonesService.update(+id, updateSaloneDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
-    return this.salonesService.remove(id);
+  remove(@Param('id') id: string) {
+    return this.salonesService.remove(+id);
   }
 }

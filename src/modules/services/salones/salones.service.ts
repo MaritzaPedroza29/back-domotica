@@ -24,7 +24,7 @@ export class SalonesService {
   }
 
   async update(id: number, updateSaloneDto: UpdateSaloneDto) {
-    const { idsalon, nombre_salon } = updateSaloneDto;
+    const { nombre_salon } = updateSaloneDto;
   
     const updateSalon = await prisma.salones.update({
       where: {
