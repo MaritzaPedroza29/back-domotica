@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { DispositivosService } from './dispositivos.service';
-import { CreateDispositivoDto } from './dto/create-dispositivo.dto';
-import { UpdateDispositivoDto } from './dto/update-dispositivo.dto';
+import { DispositivosService } from '../../services/dispositivos/dispositivos.service';
+import { CreateDispositivoDto } from '../../dto/dtodispositivos/create-dispositivo.dto';
+import { UpdateDispositivoDto } from '../../dto/dtodispositivos/update-dispositivo.dto';
 
 @Controller('dispositivos')
 export class DispositivosController {

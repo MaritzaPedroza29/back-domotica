@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateDispositivoDto } from './dto/create-dispositivo.dto';
-import { UpdateDispositivoDto } from './dto/update-dispositivo.dto';
+import { CreateDispositivoDto } from '../../dto/dtodispositivos/create-dispositivo.dto';
+import { UpdateDispositivoDto } from '../../dto/dtodispositivos/update-dispositivo.dto';
 import { PrismaClient } from '@prisma/client';
 import axios from 'axios';
 import { get } from 'http';

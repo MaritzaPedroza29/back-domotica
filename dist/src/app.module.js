@@ -14,12 +14,13 @@ const user_module_1 = require("./user/user.module");
 const dispositivos_module_1 = require("./dispositivos/dispositivos.module");
 const switchbot_module_1 = require("./switchbot/switchbot.module");
 const axios_1 = require("@nestjs/axios");
+const salones_module_1 = require("./salones/salones.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [user_module_1.UserModule, dispositivos_module_1.DispositivosModule, switchbot_module_1.SwitchbotModule, axios_1.HttpModule],
+        imports: [user_module_1.UserModule, dispositivos_module_1.DispositivosModule, switchbot_module_1.SwitchbotModule, axios_1.HttpModule, salones_module_1.SalonesModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
