@@ -58,7 +58,11 @@ let DispositivosService = class DispositivosService {
     async getenchufle(idenchfle) {
         try {
             const response = await axios_1.default.get(`http://localhost:8000/dispositivo/${idenchfle}`);
-            data.push("vatios:" + response.data.body.weight);
+            const newDataItem = data[data.length - 1] || {};
+            newDataItem['vatios'] = response.data.body.weight + "W";
+            if (data.length === 0) {
+                data.push(newDataItem);
+            }
         }
         catch (err) {
             console.error(err);
@@ -67,7 +71,11 @@ let DispositivosService = class DispositivosService {
     async getmedidor(idmedidor) {
         try {
             const response = await axios_1.default.get(`http://localhost:8000/dispositivo/${idmedidor}`);
-            data.push("temperatura:" + response.data.body.temperature);
+            const newDataItem = data[data.length - 1] || {};
+            newDataItem['temperatura'] = response.data.body.temperature + "°C";
+            if (data.length === 0) {
+                data.push(newDataItem);
+            }
         }
         catch (err) {
             console.error(err);
