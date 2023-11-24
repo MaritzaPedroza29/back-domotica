@@ -13,6 +13,9 @@ const axios_1 = require("axios");
 const prisma = new client_1.PrismaClient();
 const data = [];
 let DispositivosService = class DispositivosService {
+    constructor() {
+        this.estaPrendido = false;
+    }
     async create(createDispositivoDto) {
         const newDispositivo = await prisma.dispositivos.create({
             data: createDispositivoDto,
@@ -54,6 +57,7 @@ let DispositivosService = class DispositivosService {
         }
         this.getenchufle(enchufle);
         this.getmedidor(medidor);
+        this.obtenerEstado();
     }
     async getenchufle(idenchfle) {
         try {
@@ -91,8 +95,35 @@ let DispositivosService = class DispositivosService {
             console.error(err);
         }
     }
+    obtenerEstado() {
+        const lastDataItem = data[data.length - 1] || {};
+        lastDataItem['estadoaire'] = this.estaPrendido;
+        if (data.length === 0) {
+            data.push(lastDataItem);
+        }
+        return this.estaPrendido;
+    }
     async getdatadevice() {
         return data;
+    }
+    async commandaire(idaire, comando) {
+        const simulatedResponse = {
+            data: {
+                body: {
+                    items: [{ deviceID: idaire, message: "success", code: 100 }],
+                },
+            },
+            message: 'success',
+            statusCode: 100,
+        };
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        if (comando === 'turnOn') {
+            this.estaPrendido = true;
+        }
+        if (comando === 'turnOff') {
+            this.estaPrendido = false;
+        }
+        return [simulatedResponse];
     }
 };
 exports.DispositivosService = DispositivosService;

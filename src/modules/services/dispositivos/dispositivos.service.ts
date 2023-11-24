@@ -9,8 +9,11 @@ const prisma = new PrismaClient();
 
 const data = [];
 
+
+
 @Injectable()
 export class DispositivosService {
+  private estaPrendido: boolean = false;
   async create(createDispositivoDto: CreateDispositivoDto) {
     const newDispositivo = await prisma.dispositivos.create({
       data: createDispositivoDto,
@@ -59,6 +62,7 @@ export class DispositivosService {
     }
     this.getenchufle(enchufle);
     this.getmedidor(medidor);
+    this.obtenerEstado();
   }
 
   async getenchufle(idenchfle: string) {
@@ -109,7 +113,45 @@ export class DispositivosService {
     }
   }
 
+  obtenerEstado(): boolean {
+    const lastDataItem = data[data.length - 1] || {};
+      
+      // Actualizar las propiedades con los nuevos datos
+      lastDataItem['estadoaire'] = this.estaPrendido;
+  
+      // Si no hay objetos en el array, agregar el nuevo objeto
+      if (data.length === 0) {
+        data.push(lastDataItem);
+      }
+    return this.estaPrendido;
+  }
+  
   async getdatadevice(): Promise<any[]>{
    return data;
   }
+
+  async commandaire(idaire:string, comando:string): Promise<any[]>{
+     const simulatedResponse = {
+      data: {
+      body: {
+        items: [{ deviceID: idaire, message:"success", code:100 }],
+      },
+    },
+    message: 'success',
+    statusCode: 100,
+  };
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  // Si el comando es para encender, actualiza el estado
+  if (comando === 'turnOn'){
+    this.estaPrendido = true;
+  }
+
+  // Si el comando es para apagar, actualiza el estado
+  if (comando === 'turnOff'){
+    this.estaPrendido = false;
+  }
+
+  return [simulatedResponse];
+}
 }

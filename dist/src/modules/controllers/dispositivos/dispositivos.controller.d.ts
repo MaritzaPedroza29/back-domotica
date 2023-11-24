@@ -11,6 +11,10 @@ export declare class DispositivosController {
     }>;
     getdatadevice(): Promise<any[]>;
     comando(id: string, comando: string): Promise<any>;
+    obtenerEstadoDispositivo(): {
+        estado: boolean;
+    };
+    comandoaire(id: string, comando: string): Promise<any[]>;
     findAll(): Promise<any[]>;
     findOne(id: string): string;
     update(id: string, updateDispositivoDto: UpdateDispositivoDto): Promise<{

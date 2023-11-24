@@ -1,6 +1,7 @@
 import { CreateDispositivoDto } from '../../dto/dtodispositivos/create-dispositivo.dto';
 import { UpdateDispositivoDto } from '../../dto/dtodispositivos/update-dispositivo.dto';
 export declare class DispositivosService {
+    private estaPrendido;
     create(createDispositivoDto: CreateDispositivoDto): Promise<{
         iddispositivo: string;
         nombre_dispositivo: string;
@@ -22,5 +23,7 @@ export declare class DispositivosService {
     getenchufle(idenchfle: string): Promise<void>;
     getmedidor(idmedidor: string): Promise<void>;
     commandenchufle(idmedidor: string, comando: string): Promise<any>;
+    obtenerEstado(): boolean;
     getdatadevice(): Promise<any[]>;
+    commandaire(idaire: string, comando: string): Promise<any[]>;
 }

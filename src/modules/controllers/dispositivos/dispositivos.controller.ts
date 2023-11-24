@@ -21,6 +21,15 @@ export class DispositivosController {
    comando(@Param('id') id: string, @Param('comando')comando: string){
     return this.dispositivosService.commandenchufle(id, comando);
   }
+  @Get('/estado')
+  obtenerEstadoDispositivo(): { estado: boolean } {
+    const estado = this.dispositivosService.obtenerEstado();
+    return { estado };
+  }
+  @Post("/comandoaire/:id/:comando")
+  comandoaire(@Param('id') id:string, @Param('comando') comando:string){
+    return this.dispositivosService.commandaire(id, comando);
+  }
 
   @Get()
   async findAll() {

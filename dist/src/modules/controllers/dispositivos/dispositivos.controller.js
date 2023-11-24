@@ -31,6 +31,13 @@ let DispositivosController = class DispositivosController {
     comando(id, comando) {
         return this.dispositivosService.commandenchufle(id, comando);
     }
+    obtenerEstadoDispositivo() {
+        const estado = this.dispositivosService.obtenerEstado();
+        return { estado };
+    }
+    comandoaire(id, comando) {
+        return this.dispositivosService.commandaire(id, comando);
+    }
     async findAll() {
         const dispositivos = await this.dispositivosService.findAll();
         const iddispositivo = dispositivos.map(dispositivo => dispositivo.iddispositivo);
@@ -72,6 +79,20 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
 ], DispositivosController.prototype, "comando", null);
+__decorate([
+    (0, common_1.Get)('/estado'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Object)
+], DispositivosController.prototype, "obtenerEstadoDispositivo", null);
+__decorate([
+    (0, common_1.Post)("/comandoaire/:id/:comando"),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Param)('comando')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], DispositivosController.prototype, "comandoaire", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
