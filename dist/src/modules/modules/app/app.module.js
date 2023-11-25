@@ -12,14 +12,14 @@ const app_controller_1 = require("../../controllers/app/app.controller");
 const app_service_1 = require("../../services/app/app.service");
 const user_module_1 = require("../user/user.module");
 const dispositivos_module_1 = require("../dispositivos/dispositivos.module");
-const axios_1 = require("@nestjs/axios");
 const salones_module_1 = require("../salones/salones.module");
+const auth_module_1 = require("../../../auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [user_module_1.UserModule, dispositivos_module_1.DispositivosModule, axios_1.HttpModule, salones_module_1.SalonesModule],
+        imports: [user_module_1.UserModule, dispositivos_module_1.DispositivosModule, salones_module_1.SalonesModule, auth_module_1.AuthModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

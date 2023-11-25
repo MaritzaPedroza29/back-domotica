@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from '../../dto/dtouser/create-user.dto';
 import { UpdateUserDto } from '../../dto/dtouser/update-user.dto';
-import { PrismaClient } from '@prisma/client';
-import * as crypto from 'crypto';
+import { PrismaClient, usuarios } from '@prisma/client';
+import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -31,6 +31,15 @@ export class UserService {
 
   findOne(id: number) {
     return `This action returns a #${id} user`;
+  }
+
+  async findOneByEmail(email: string){
+    const user = await prisma.usuarios.findFirst({
+      where: {
+        correo: email,
+      },
+    })
+    return user;
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {

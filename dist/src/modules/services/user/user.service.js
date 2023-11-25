@@ -32,6 +32,14 @@ let UserService = class UserService {
     findOne(id) {
         return `This action returns a #${id} user`;
     }
+    async findOneByEmail(email) {
+        const user = await prisma.usuarios.findFirst({
+            where: {
+                correo: email,
+            },
+        });
+        return user;
+    }
     async update(id, updateUserDto) {
         const { nombre, correo } = updateUserDto;
         const updateUser = await prisma.usuarios.update({

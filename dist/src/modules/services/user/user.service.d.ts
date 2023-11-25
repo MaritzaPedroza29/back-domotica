@@ -10,6 +10,13 @@ export declare class UserService {
     }>;
     findAll(): Promise<any[]>;
     findOne(id: number): string;
+    findOneByEmail(email: string): Promise<{
+        idusuario: number;
+        nombre: string;
+        correo: string;
+        clave: string;
+        imagen: string;
+    }>;
     update(id: number, updateUserDto: UpdateUserDto): Promise<{
         idusuario: number;
         nombre: string;

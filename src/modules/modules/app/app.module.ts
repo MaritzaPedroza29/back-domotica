@@ -8,11 +8,11 @@ import { APP_FILTER } from '@nestjs/core';
 import { DispositivosModule } from '../dispositivos/dispositivos.module';
 import { HttpModule } from '@nestjs/axios';
 import { SalonesModule } from '../salones/salones.module';
-
+import { AuthModule } from 'src/auth/auth.module';
 
 
 @Module({
-  imports: [UserModule, DispositivosModule, HttpModule, SalonesModule],
+  imports: [UserModule, DispositivosModule, SalonesModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
