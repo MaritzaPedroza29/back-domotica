@@ -21,6 +21,7 @@ export declare class DispositivosService {
     }>;
     getdeviceid(deviceIds: string[]): void;
     getenchufle(idenchfle: string): Promise<void>;
+    getenchuflepuerta(idenchflepuerta: string): Promise<void>;
     getmedidor(idmedidor: string): Promise<void>;
     commandenchufle(idmedidor: string, comando: string): Promise<any>;
     obtenerEstado(): boolean;

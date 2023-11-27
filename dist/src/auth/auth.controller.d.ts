@@ -7,5 +7,5 @@ export declare class AuthController {
         token: string;
         email: string;
     }>;
-    profile(): string;
+    profile(req: any): any;
 }

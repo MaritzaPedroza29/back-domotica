@@ -6,10 +6,11 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-    constructor (
-        private readonly userService : UserService,
+    constructor(
+        private readonly userService: UserService,
         private readonly jwtService: JwtService
-    ){}
+      ) {}
+    
     async login({email, password}: LoginDto){
         
         const user = await this.userService.findOneByEmail(email);
@@ -21,7 +22,8 @@ export class AuthService {
         if(!isPasswordValid){
             throw new UnauthorizedException('la contraseña es incorrecta');
         }
-        const payload = {email: user.correo};
+        const payload = { email: user.correo };
+
         const token = await this.jwtService.signAsync(payload);
         return {
             token, 

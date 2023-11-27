@@ -16,7 +16,7 @@ exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
 const auth_service_1 = require("./auth.service");
 const login_dt_1 = require("./dto/login.dt");
-const passport_1 = require("@nestjs/passport");
+const auth_guard_1 = require("./auth.guard");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
@@ -24,8 +24,8 @@ let AuthController = class AuthController {
     Login(loginDto) {
         return this.authService.login(loginDto);
     }
-    profile() {
-        return 'profile';
+    profile(req) {
+        return req.user;
     }
 };
 exports.AuthController = AuthController;
@@ -38,9 +38,10 @@ __decorate([
 ], AuthController.prototype, "Login", null);
 __decorate([
     (0, common_1.Get)('profile'),
-    (0, common_1.UseGuards)(passport_1.AuthGuard),
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
+    __param(0, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "profile", null);
 exports.AuthController = AuthController = __decorate([

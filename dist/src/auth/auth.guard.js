@@ -12,14 +12,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthGuard = void 0;
 const common_1 = require("@nestjs/common");
 const jwt_1 = require("@nestjs/jwt");
+const jwt_constant_1 = require("./constants/jwt.constant");
 let AuthGuard = class AuthGuard {
     constructor(jwtService) {
         this.jwtService = jwtService;
     }
     async canActivate(context) {
         const request = context.switchToHttp().getRequest();
-        console.log(request.headers.authorization);
+        const token = this.extractTokenFromHeader(request);
+        if (!token) {
+            throw new common_1.UnauthorizedException();
+        }
+        try {
+            const payload = await this.jwtService.verifyAsync(token, {
+                secret: jwt_constant_1.jwtConstants.secret
+            });
+            request.user = payload;
+        }
+        catch {
+            throw new common_1.UnauthorizedException();
+        }
         return true;
+    }
+    extractTokenFromHeader(request) {
+        const [type, token] = request.headers.authorization?.split(' ') ?? [];
+        return type === 'Bearer' ? token : undefined;
     }
 };
 exports.AuthGuard = AuthGuard;

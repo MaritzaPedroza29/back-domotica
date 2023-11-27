@@ -56,12 +56,15 @@ export class DispositivosService {
   getdeviceid(deviceIds: string[]){
     let enchufle = '';
     let medidor = '';
+    let enchuflepuerta = '';
     for (let i = 0; i < deviceIds.length; i++) {
-       enchufle = deviceIds[1];
-       medidor = deviceIds[2];
+        enchuflepuerta = deviceIds[1];
+       enchufle = deviceIds[2];
+       medidor = deviceIds[3];
     }
     this.getenchufle(enchufle);
     this.getmedidor(medidor);
+    this.getenchuflepuerta(enchuflepuerta);
     this.obtenerEstado();
   }
 
@@ -75,6 +78,25 @@ export class DispositivosService {
       // Actualizar las propiedades con los nuevos datos
       lastDataItem['vatios'] = response.data.body.weight + "W";
       lastDataItem['power'] = response.data.body.power
+  
+      // Si no hay objetos en el array, agregar el nuevo objeto
+      if (data.length === 0) {
+        data.push(lastDataItem);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  async getenchuflepuerta(idenchflepuerta: string) {
+    try {
+      const response = await axios.get(`http://localhost:8000/dispositivo/${idenchflepuerta}`);
+      
+      // Obtener el último objeto en el array o un objeto vacío si no hay objetos
+      const lastDataItem = data[data.length - 1] || {};
+      
+      // Actualizar las propiedades con los nuevos datos
+      //lastDataItem['vatios'] = response.data.body.weight + "W";
+      lastDataItem['power_puerta'] = response.data.body.power
   
       // Si no hay objetos en el array, agregar el nuevo objeto
       if (data.length === 0) {

@@ -49,14 +49,18 @@ let DispositivosService = class DispositivosService {
         return dispositivo;
     }
     getdeviceid(deviceIds) {
+        console.log(deviceIds);
         let enchufle = '';
         let medidor = '';
+        let enchuflepuerta = '';
         for (let i = 0; i < deviceIds.length; i++) {
-            enchufle = deviceIds[1];
-            medidor = deviceIds[2];
+            enchuflepuerta = deviceIds[1];
+            enchufle = deviceIds[2];
+            medidor = deviceIds[3];
         }
         this.getenchufle(enchufle);
         this.getmedidor(medidor);
+        this.getenchuflepuerta(enchuflepuerta);
         this.obtenerEstado();
     }
     async getenchufle(idenchfle) {
@@ -65,6 +69,19 @@ let DispositivosService = class DispositivosService {
             const lastDataItem = data[data.length - 1] || {};
             lastDataItem['vatios'] = response.data.body.weight + "W";
             lastDataItem['power'] = response.data.body.power;
+            if (data.length === 0) {
+                data.push(lastDataItem);
+            }
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+    async getenchuflepuerta(idenchflepuerta) {
+        try {
+            const response = await axios_1.default.get(`http://localhost:8000/dispositivo/${idenchflepuerta}`);
+            const lastDataItem = data[data.length - 1] || {};
+            lastDataItem['power_puerta'] = response.data.body.power;
             if (data.length === 0) {
                 data.push(lastDataItem);
             }
