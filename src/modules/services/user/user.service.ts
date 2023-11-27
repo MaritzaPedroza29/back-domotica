@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 export class UserService {
   async create(createUserDto: CreateUserDto) {
     const { nombre, correo, clave, imagen } = createUserDto;
-    const hashedPassword = this.hashPassword(clave);
+    const hashedPassword = await bcrypt.hash(clave, 10 );
 
     const newUser = await prisma.usuarios.create({
       data: {
@@ -65,10 +65,12 @@ export class UserService {
     return user;
   }
 
-  hashPassword(password: string): string {
-    const md5sum = crypto.createHash('md5');
-    md5sum.update(password);
-    return md5sum.digest('hex');
-  }
+  /*hashPassword(password: string): string {
+    const saltOrRounds = 10;
+    const hash = bcrypt.hash(password, 10 );
+    //const md5sum = crypto.createHash('md5');
+    //md5sum.update(password);
+    return hash
+  }*/
 }
 

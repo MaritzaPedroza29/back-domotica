@@ -9,12 +9,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const client_1 = require("@prisma/client");
-const crypto = require("crypto");
+const bcrypt = require("bcrypt");
 const prisma = new client_1.PrismaClient();
 let UserService = class UserService {
     async create(createUserDto) {
         const { nombre, correo, clave, imagen } = createUserDto;
-        const hashedPassword = this.hashPassword(clave);
+        const hashedPassword = await bcrypt.hash(clave, 10);
         const newUser = await prisma.usuarios.create({
             data: {
                 nombre,
@@ -58,11 +58,6 @@ let UserService = class UserService {
             where: { idusuario: id },
         });
         return user;
-    }
-    hashPassword(password) {
-        const md5sum = crypto.createHash('md5');
-        md5sum.update(password);
-        return md5sum.digest('hex');
     }
 };
 exports.UserService = UserService;

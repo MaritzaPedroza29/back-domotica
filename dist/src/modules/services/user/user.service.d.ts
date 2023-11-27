@@ -31,5 +31,4 @@ export declare class UserService {
         clave: string;
         imagen: string;
     }>;
-    hashPassword(password: string): string;
 }
