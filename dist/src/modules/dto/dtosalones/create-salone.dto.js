@@ -24,4 +24,9 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateSaloneDto.prototype, "nombre_salon", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateSaloneDto.prototype, "idusuario", void 0);
 //# sourceMappingURL=create-salone.dto.js.map

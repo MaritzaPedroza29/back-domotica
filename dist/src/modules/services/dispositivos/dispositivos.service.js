@@ -49,14 +49,13 @@ let DispositivosService = class DispositivosService {
         return dispositivo;
     }
     getdeviceid(deviceIds) {
-        console.log(deviceIds);
         let enchufle = '';
         let medidor = '';
         let enchuflepuerta = '';
         for (let i = 0; i < deviceIds.length; i++) {
-            enchuflepuerta = deviceIds[1];
-            enchufle = deviceIds[2];
-            medidor = deviceIds[3];
+            enchuflepuerta = deviceIds[2];
+            enchufle = deviceIds[4];
+            medidor = deviceIds[6];
         }
         this.getenchufle(enchufle);
         this.getmedidor(medidor);

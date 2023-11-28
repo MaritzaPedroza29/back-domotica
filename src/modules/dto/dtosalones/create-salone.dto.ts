@@ -4,7 +4,11 @@ export class CreateSaloneDto {
     @IsNotEmpty()
     idsalon: number;
 
-  @IsString()
-  @IsNotEmpty()
-  nombre_salon: string;
+    @IsString()
+    @IsNotEmpty()
+    nombre_salon: string;
+  
+    @IsNumber()
+    @IsNotEmpty()
+    idusuario: number;
 }

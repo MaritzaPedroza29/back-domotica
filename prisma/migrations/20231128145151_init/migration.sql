@@ -11,8 +11,9 @@ CREATE TABLE `usuarios` (
 
 -- CreateTable
 CREATE TABLE `salones` (
-    `idsalon` INTEGER NOT NULL,
+    `idsalon` INTEGER NOT NULL AUTO_INCREMENT,
     `nombre_salon` VARCHAR(191) NOT NULL,
+    `usuariosIdusuario` INTEGER NOT NULL,
 
     PRIMARY KEY (`idsalon`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -25,6 +26,9 @@ CREATE TABLE `dispositivos` (
 
     PRIMARY KEY (`iddispositivo`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `salones` ADD CONSTRAINT `salones_usuariosIdusuario_fkey` FOREIGN KEY (`usuariosIdusuario`) REFERENCES `usuarios`(`idusuario`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `dispositivos` ADD CONSTRAINT `dispositivos_salonesIdsalon_fkey` FOREIGN KEY (`salonesIdsalon`) REFERENCES `salones`(`idsalon`) ON DELETE RESTRICT ON UPDATE CASCADE;

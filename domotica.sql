@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2023 a las 14:42:59
+-- Tiempo de generación: 28-11-2023 a las 15:33:42
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -39,7 +39,8 @@ CREATE TABLE `dispositivos` (
 
 INSERT INTO `dispositivos` (`iddispositivo`, `nombre_dispositivo`, `salonesIdsalon`) VALUES
 ('01-202310201157-03261299', 'aire acondicionado', 1),
-('70041D82C9B2', 'enchufle', 1),
+('70041D7FD52E', 'enchufle puerta', 1),
+('70041D82C9B2', 'enchufle 105', 1),
 ('E91D07CDFC9D', 'medidor de temperatura', 1);
 
 -- --------------------------------------------------------
@@ -79,12 +80,13 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`idusuario`, `nombre`, `correo`, `clave`, `imagen`) VALUES
-(1, 'Jessica Suarez', 'doc_js_suarez@fesc.edu.co', '81dc9bdb52d04dc20036dbd8313ed055', 'profesora1.33da8df4be4819a217b8.png'),
-(2, 'Rodolfo Ortega', 'doc_jr_ortega@fesc.edu.co', '674f3c2c1a8a6f90461e8a66fb5550ba', 'profesor4.d905d407c8b317250903.png'),
-(3, 'Sebastian Galindo', 'doc_js_galindo@fesc.edu.co', 'c5c53759e4dd1bfe8b3dcfec37d0ea72', 'profesor2.c181b8ec71a951b94a07.png'),
-(4, 'Magda Martinez', 'doc_mf_martinez@fesc.edu.co', 'e846fb8a4f365ca8e84393d4f34e1b07', 'profesora3.4c238302726fa4dbade3.png'),
-(5, 'Maria Fernandez', 'est_mf_fernandez@fesc.edu.co', 'ad75b1b9aa47736564576fa6667fe1a4', 'profesora6.35f259923b30eead07c3.png'),
-(6, 'Darwin Cardozo', 'doc_da_cardozo@fesc.edu.co', 'b4631d19343f260022ee73087c6e2eab', 'profesor5.89703c8e36a3f133af30.png');
+(1, 'Jessica Cardenas', 'doc_js_Cardenas@fesc.edu.co', 'ec6a6536ca304edf844d1d248a4f08dc', 'profesora1.33da8df4be4819a217b8.png'),
+(2, 'Rodolfo Ortega', 'doc_jr_ortega@fesc.edu.co', '1f5542dc6ea1c62f6d35786cc684262d', 'profesor4.d905d407c8b317250903.png'),
+(3, 'Sebastian Galindo', 'doc_js_galindo@fesc.edu.co', 'fdb39efea47d0f5eddabb893f7f9f17a', 'profesor2.c181b8ec71a951b94a07.png'),
+(4, 'Magda Martinez', 'doc_mf_martinez@fesc.edu.co', '5ef9734d99e02dd788e1ca3c57fe2982', 'profesora3.4c238302726fa4dbade3.png'),
+(5, 'Maria Fernandez', 'est_mf_fernandez@fesc.edu.co', '2c7bc3213b3daa34fcf55ea3077903af', 'profesora6.35f259923b30eead07c3.png'),
+(6, 'Darwin Cardozo', 'doc_da_cardozo@fesc.edu.co', 'bef46e7d252ccd0cdb1cd4f44314c056', 'profesor5.89703c8e36a3f133af30.png'),
+(12, 'karolayn Jaimes', 'doc_kj_jaimes@fesc.edu.co', '$2b$10$lL/VExRsOPyTTGoyTkU9CuxyeSHuxM3uhn9jKLlZQOb/cv/hXyVEW', 'user.5faf09a7795d28bf5a2b.png');
 
 -- --------------------------------------------------------
 
@@ -147,7 +149,7 @@ ALTER TABLE `_prisma_migrations`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas

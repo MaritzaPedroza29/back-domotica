@@ -1,15 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSaloneDto } from '../../dto/dtosalones/create-salone.dto';
 import { UpdateSaloneDto } from '../../dto/dtosalones/update-salone.dto';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
+
 
 const prisma = new PrismaClient();
 
 @Injectable()
 export class SalonesService {
   async create(createSaloneDto: CreateSaloneDto) {
+    // Supongamos que createSaloneDto tiene una propiedad userId que contiene el ID del usuario
     const newSalones = await prisma.salones.create({
-      data: createSaloneDto,
+      data: {
+        nombre_salon: createSaloneDto.nombre_salon,
+        usuariosIdusuario: createSaloneDto.idusuario ,
+      },
     });
     return newSalones;
   }

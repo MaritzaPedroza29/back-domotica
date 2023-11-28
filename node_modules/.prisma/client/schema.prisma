@@ -11,17 +11,20 @@ datasource db {
 }
 
 model usuarios {
-  idusuario Int    @id @default(autoincrement())
+  idusuario Int       @id @default(autoincrement())
   nombre    String
   correo    String
   clave     String
   imagen    String
+  salones   salones[]
 }
 
 model salones {
-  idsalon      Int            @id
-  nombre_salon String
-  dispositivos dispositivos[]
+  idsalon           Int            @id @default(autoincrement())
+  nombre_salon      String
+  idusuario         usuarios       @relation(fields: [usuariosIdusuario], references: [idusuario])
+  usuariosIdusuario Int
+  dispositivos      dispositivos[]
 }
 
 model dispositivos {

@@ -7,15 +7,18 @@ export declare class SalonesController {
     create(createSaloneDto: CreateSaloneDto): Promise<{
         idsalon: number;
         nombre_salon: string;
+        usuariosIdusuario: number;
     }>;
     findAll(): Promise<any[]>;
     findOne(id: number): string;
     update(id: string, updateSaloneDto: UpdateSaloneDto): Promise<{
         idsalon: number;
         nombre_salon: string;
+        usuariosIdusuario: number;
     }>;
     remove(id: string): Promise<{
         idsalon: number;
         nombre_salon: string;
+        usuariosIdusuario: number;
     }>;
 }

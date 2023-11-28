@@ -13,7 +13,10 @@ const prisma = new client_1.PrismaClient();
 let SalonesService = class SalonesService {
     async create(createSaloneDto) {
         const newSalones = await prisma.salones.create({
-            data: createSaloneDto,
+            data: {
+                nombre_salon: createSaloneDto.nombre_salon,
+                usuariosIdusuario: createSaloneDto.idusuario,
+            },
         });
         return newSalones;
     }
